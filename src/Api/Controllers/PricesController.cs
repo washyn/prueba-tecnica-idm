@@ -92,8 +92,3 @@ public class PricesController : AbpController
         return Task.CompletedTask;
     }
 }
-
-public class PricesFilter
-{
-    public Guid ProductId { get; set; }
-}
