@@ -89,3 +89,7 @@ avanzado
    o Cómo correr el proyecto (SQLite/InMemory)
    o Cómo ejecutar pruebas unitarias
    o Qué se podría mejorar si tuviera más tiempo.
+
+--
+
+Add mapper of error and tests integrales en memoria y queda...

@@ -1,10 +1,9 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Washyn.Kfc;
+namespace Washyn.Kfc.Products;
 
 public class ProductDto : EntityDto<Guid>
 {
     public string Name { get; set; }
-    // TODO: remove and use productChannelPrice
-    public decimal Price { get; set; }
+    public string Sku { get; set; }
 }

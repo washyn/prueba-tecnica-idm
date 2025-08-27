@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Washyn.Kfc;
+namespace Washyn.Kfc.Products;
 
 public class CreateUpdateProductValidator : AbstractValidator<CreateUpdateProduct>
 {
@@ -9,14 +9,8 @@ public class CreateUpdateProductValidator : AbstractValidator<CreateUpdateProduc
         RuleFor(x => x.Name)
             .NotEmpty()
             .Length(2,10);
-        RuleFor(x => x.Price)
+        RuleFor(x => x.Sku)
             .NotEmpty()
-            .Must(Positive)
-            .WithMessage("Price must be positive(custom message from fluent validation).");
-    }
-
-    private bool Positive(decimal arg)
-    {
-        return arg > 0;   
+            .WithMessage("Sku must be code(custom message from fluent validation).");
     }
 }

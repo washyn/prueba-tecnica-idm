@@ -20,19 +20,10 @@ public static class Program
             builder.Host.AddAppSettingsSecretsJson()
                 .UseAutofac()
                 .UseSerilog();
-            if (IsMigrateDatabase(args))
-            {
-                builder.Services.AddDataMigrationEnvironment();
-            }
+
             await builder.AddApplicationAsync<ApiModule>();
             var app = builder.Build();
             await app.InitializeApplicationAsync();
-
-            if (IsMigrateDatabase(args))
-            {
-                // await app.Services.GetRequiredService<LotDbMigrationService>().MigrateAsync();
-                return 0;
-            }
 
             Log.Information("Starting app.");
             await app.RunAsync();
@@ -47,11 +38,5 @@ public static class Program
         {
             Log.CloseAndFlush();
         }
-    }
-
-    // TODO: remover si no es necesario
-    private static bool IsMigrateDatabase(string[] args)
-    {
-        return args.Any(x => x.Contains("--migrate-database", StringComparison.OrdinalIgnoreCase));
     }
 }

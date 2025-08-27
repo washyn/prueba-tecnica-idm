@@ -1,4 +1,6 @@
-﻿namespace Washyn.Kfc.Prices;
+﻿using Washyn.Kfc.Products;
+
+namespace Washyn.Kfc.Prices;
 
 public class PriceDto
 {

@@ -11,10 +11,10 @@ public class ChannelController : AbpController
     {
         return new List<Channel>
         {
-            new Channel { Name = "Web", Code = "WEB" },
-            new Channel { Name = "Point of Sale", Code = "POS" },
-            new Channel { Name = "Marketing", Code = "MKT" }
+            new Channel { Name = "RAPPI", Code = "RAPPI" },
+            new Channel { Name = "DIDI", Code = "DIDI" },
+            new Channel { Name = "PEYA", Code = "PEYA" },
+            new Channel { Name = "WEB", Code = "WEB" }
         };
     }
-
 }

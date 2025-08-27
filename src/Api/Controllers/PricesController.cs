@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.Domain.Entities;
 using Volo.Abp.Validation;
 using Washyn.Kfc.Prices;
+using Washyn.Kfc.Products;
 
 namespace Washyn.Kfc.Controllers;
 
@@ -33,7 +34,7 @@ public class PricesController : AbpController
             Product = new ProductDto()
             {
                 Name = "Product",
-                Price = 5
+                Sku = "7896354VPAEOFJNK"
             }
         });
     }
@@ -51,7 +52,7 @@ public class PricesController : AbpController
             Product = new ProductDto()
             {
                 Name = "Product",
-                Price = 5
+                Sku = "7896354VPAEOFJNK"
             },
             Channel = new Channel()
             {
@@ -61,15 +62,15 @@ public class PricesController : AbpController
             },
         });
     }
-
+    
     private void CheckIfExiststActive()
     {
         if (ExistsActiveChannel())
         {
-            // throw new AbpValidationException("Already exists an active channel.");
-            // throw new ValidationException("Already exists an active channel.");
-            throw new AbpException("Already exists an active channel.");
-            // TODO: add global ex handler...
+            throw new AbpValidationException(new List<ValidationResult>()
+            {
+                new ValidationResult("Already exists an active price.")
+            });
         }
     }
     
