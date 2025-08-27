@@ -1,36 +1,18 @@
-﻿using System.Linq;
-using Shouldly;
-using System.Threading.Tasks;
+﻿using Shouldly;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Modularity;
 using Washyn.Kfc.Products;
 using Xunit;
 
-namespace ERP.SYSTEM.Samples;
+namespace Application.Tests.Products;
 
-/* This is just an example test class.
- * Normally, you don't test code of the modules you are using
- * (like IIdentityUserAppService here).
- * Only test your own application services.
- */
-public class SampleAppServiceTests:SYSTEMApplicationTestBase
+public class ProductAppServiceTests:ApplicationTestBase
 {
     private readonly IProductsAppService _productsAppService;
 
-    public SampleAppServiceTests()
+    public ProductAppServiceTests()
     {
         _productsAppService = GetRequiredService<IProductsAppService>();
     }
-
-    // [Fact]
-    // public async Task Initial_Data_Should_Contain_Sample_Data()
-    // {
-    //     //Act
-    //     var result = await _boardAppService.GetListAsync(new PagedAndSortedResultRequestDto());
-    //     
-    //     //Assert
-    //     result.TotalCount.ShouldBeGreaterThan(0);
-    // }
     
     [Fact]
     public async Task SAMPLE()

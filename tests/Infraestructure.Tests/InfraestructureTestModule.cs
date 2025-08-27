@@ -11,12 +11,12 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Uow;
 using Washyn.Kfc;
 
-namespace ERP.SYSTEM.EntityFrameworkCore;
+namespace Infraestructure.Tests;
 
 [DependsOn(typeof(DomainTestModule))]
 [DependsOn(typeof(InfrastructureModule))]
 [DependsOn(typeof(AbpEntityFrameworkCoreSqliteModule))]
-public class SYSTEMEntityFrameworkCoreTestModule : AbpModule
+public class InfraestructureTestModule : AbpModule
 {
     private SqliteConnection? _sqliteConnection;
 
