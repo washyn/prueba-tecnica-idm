@@ -1,41 +1,57 @@
-var builder = WebApplication.CreateBuilder(args);
+using Serilog;
+using Volo.Abp.Data;
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+namespace Washyn.Kfc;
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public static class Program
 {
-    app.MapOpenApi();
-}
+    public static async Task<int> Main(string[] args)
+    {
+        var loggerConfiguration = new LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .WriteTo.Async(c => c.File("Logs/logs.log", rollingInterval: RollingInterval.Day, shared: true))
+            .WriteTo.Async(c => c.Console());
 
-app.UseHttpsRedirection();
+        Log.Logger = loggerConfiguration.CreateLogger();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+        try
+        {
+            var builder = WebApplication.CreateBuilder(args);
+            builder.Host.AddAppSettingsSecretsJson()
+                .UseAutofac()
+                .UseSerilog();
+            if (IsMigrateDatabase(args))
+            {
+                builder.Services.AddDataMigrationEnvironment();
+            }
+            await builder.AddApplicationAsync<ApiModule>();
+            var app = builder.Build();
+            await app.InitializeApplicationAsync();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+            if (IsMigrateDatabase(args))
+            {
+                // await app.Services.GetRequiredService<LotDbMigrationService>().MigrateAsync();
+                return 0;
+            }
 
-app.Run();
+            Log.Information("Starting app.");
+            await app.RunAsync();
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "App terminated unexpectedly!");
+            return 1;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
+    }
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    // TODO: remover si no es necesario
+    private static bool IsMigrateDatabase(string[] args)
+    {
+        return args.Any(x => x.Contains("--migrate-database", StringComparison.OrdinalIgnoreCase));
+    }
 }
