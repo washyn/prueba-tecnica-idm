@@ -1,9 +1,9 @@
-﻿using Xunit;
-
-namespace ERP.SYSTEM.EntityFrameworkCore;
-
+﻿// using Xunit;
+//
+// namespace ERP.SYSTEM.EntityFrameworkCore;
+//
 // [CollectionDefinition(SYSTEMTestConsts.CollectionDefinitionName)]
-public class SYSTEMEntityFrameworkCoreCollection : ICollectionFixture<SYSTEMEntityFrameworkCoreFixture>
-{
-
-}
+// public class SYSTEMEntityFrameworkCoreCollection : ICollectionFixture<SYSTEMEntityFrameworkCoreFixture>
+// {
+//
+// }

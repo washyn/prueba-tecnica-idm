@@ -37,7 +37,9 @@ public class SampleRepositoryTests : SYSTEMEntityFrameworkCoreTestBase
         await _productRepository.InsertAsync(board);
 
         var res = await _productRepository.GetAsync(board.Id);
-            
+        var products = await _productRepository.GetListAsync();
+        
+        products.Count.ShouldBe(1);
         res.Id.ShouldBe(board.Id);
     }
 }
