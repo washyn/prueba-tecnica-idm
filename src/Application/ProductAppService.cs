@@ -1,4 +1,3 @@
-using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -16,7 +15,7 @@ public class ProductsAppService :
         _logger = logger;
     }
 
-    public override async Task<ProductDto> CreateAsync(CreateUpdateProduct input)
+    public async Task<ProductDto> CreateAsync(CreateUpdateProduct input)
     {
         _logger.LogInformation("Create product logger...............................");
         var product = ObjectMapper.Map<CreateUpdateProduct, Product>(input);
@@ -43,34 +42,4 @@ public class ProductsAppService :
     {
         return base.DeleteAsync(id);
     }
-}
-
-public class ProductDto : EntityDto<Guid>
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-}
-
-public class CreateUpdateProduct : EntityDto
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-}
-
-// public class CreateUpdateProductValidator : AbstractValidator<CreateUpdateProduct>
-// {
-//     CreateUpdateProductValidator()
-//     {
-//         RuleFor(x => x.Name).NotEmpty();
-//         RuleFor(x => x.Price).NotEmpty().Must(Positive).WithMessage("Price must be positive(custom message from fluent validation).");
-//     }
-//
-//     private bool Positive(decimal arg)
-//     {
-//         return arg > 0;   
-//     }
-// }
-public interface
-    IProductsAppService : ICrudAppService<ProductDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProduct>
-{
 }

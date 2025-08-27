@@ -11,3 +11,46 @@ Content-Type: application/json
     "name": "pruebaaa",
     "price": 345
 }
+
+
+### Error validacion
+
+POST {{Api_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "pruebaaaaaaaaaaaaaaaa",
+  "price": -345
+}
+
+
+### canales
+GET {{Api_HostAddress}}/api/canales
+
+
+### prices get
+GET {{Api_HostAddress}}/api/prices?productId=7cc0e020-43f5-4050-be22-760ac4f5bd74
+
+
+###
+# curl -X 'POST' 
+#  'http://localhost:5004/api/prices' 
+#  -H 'accept: text/plain' 
+#  -H 'Content-Type: application/json' 
+#  -H 'X-Requested-With: XMLHttpRequest' 
+#  -d '{
+#  "name": "string",
+#  "price": 0
+#}'
+POST http://localhost:5004/api/prices
+accept: text/plain
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+
+{
+  "name": "string",
+  "price": 0
+}
+
+###
+

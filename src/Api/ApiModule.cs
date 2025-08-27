@@ -24,7 +24,6 @@ namespace Washyn.Kfc
             var env = context.Services.GetHostingEnvironment();
 
             Configure<AbpClockOptions>(options => { options.Kind = DateTimeKind.Utc; });
-            ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context, configuration);
         }
 
@@ -38,28 +37,6 @@ namespace Washyn.Kfc
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
                 });
-        }
-
-        private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
-        {
-            // context.Services.AddCors(options =>
-            // {
-            //     options.AddDefaultPolicy(builder =>
-            //     {
-            //         builder
-            //             .WithOrigins(
-            //                 configuration["App:CorsOrigins"]
-            //                     .Split(",", StringSplitOptions.RemoveEmptyEntries)
-            //                     .Select(o => o.RemovePostFix("/"))
-            //                     .ToArray()
-            //             )
-            //             .WithAbpExposedHeaders()
-            //             .SetIsOriginAllowedToAllowWildcardSubdomains()
-            //             .AllowAnyHeader()
-            //             .AllowAnyMethod()
-            //             .AllowCredentials();
-            //     });
-            // });
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -76,10 +53,9 @@ namespace Washyn.Kfc
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
             app.UseStaticFiles();
             app.UseRouting();
-            // app.UseCors();
             app.UseUnitOfWork();
             app.UseAuthentication();
             app.UseAuthorization();
