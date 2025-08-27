@@ -15,7 +15,7 @@ public class ProductAppServiceTests:ApplicationTestBase
     }
     
     [Fact]
-    public async Task SAMPLE()
+    public async Task Should_Create_And_Query_Product_AppService()
     {
         // Arrange
         var product = new CreateUpdateProduct()
