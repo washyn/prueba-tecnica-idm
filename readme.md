@@ -198,4 +198,10 @@ Usamos SQLite porque es ligero y no requiere instalacion como se solicito en la 
    - Endpoints que nos digan si el sistema está bien o esta fallando
 
 9. **Dockerización para desplegar** :
+
    - Contenedores Docker para que funcione igual en todas partes
+
+10. **Test de integración** :
+
+- Pruebas de integración para ver cómo funciona todo en conjunto
+- Llamadas a los endpoints de la API
