@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Infraestructure.Tests;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
 using Volo.Abp.Autofac;
 using Volo.Abp.Data;
@@ -8,9 +9,7 @@ using Washyn.Kfc;
 
 namespace Domain.Tests;
 
-[DependsOn(typeof(DomainModule))]
-[DependsOn(typeof(AbpAutofacModule))]
-[DependsOn(typeof(AbpTestBaseModule))]
+[DependsOn(typeof(InfraestructureTestModule))]
 public class DomainTestModule : AbpModule
 {
 }

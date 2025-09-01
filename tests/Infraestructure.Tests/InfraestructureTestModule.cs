@@ -1,9 +1,9 @@
-﻿using Domain.Tests;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
+using TestBase;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
@@ -13,7 +13,7 @@ using Washyn.Kfc;
 
 namespace Infraestructure.Tests;
 
-[DependsOn(typeof(DomainTestModule))]
+[DependsOn(typeof(AppTestBaseModule))]
 [DependsOn(typeof(InfrastructureModule))]
 [DependsOn(typeof(AbpEntityFrameworkCoreSqliteModule))]
 public class InfraestructureTestModule : AbpModule

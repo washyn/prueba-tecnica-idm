@@ -31,5 +31,6 @@ public class ProductAppServiceTests:ApplicationTestBase
         //Assert
         result.TotalCount.ShouldBeGreaterThan(0);
         result.Items.ShouldContain(a => a.Name == product.Name);
+        // add logs and validate
     }
 }

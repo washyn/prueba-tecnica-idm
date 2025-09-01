@@ -1,4 +1,4 @@
-﻿using Domain.Tests;
+﻿using TestBase;
 
 namespace Infraestructure.Tests;
 

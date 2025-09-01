@@ -5,13 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\Domain.Tests\Domain.Tests.csproj" />
-  </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="8.3.4" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Infrastructure\Infrastructure.csproj" />
+      <ProjectReference Include="..\TestBase\TestBase.csproj" />
     </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Domain.Tests;
+using TestBase;
 
 namespace Application.Tests;
 
